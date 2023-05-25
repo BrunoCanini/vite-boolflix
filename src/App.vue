@@ -8,36 +8,38 @@ export default {
   data() {
     return {
         store,
-        films: [],
-        searchContact: ""
     }
   },
   mounted() {
     console.log("store", store)
+    this.movieLoaded(this.store.urlAPI)
+  },
 
-    axios.get(this.store.urlAPI).then(risposta => {
+  methods: {
+    ricerca(){
+      let indirizzo = this.store.urlAPI + this.searchContact
+      this.movieLoaded(indirizzo)
+    },
+
+    movieLoaded(pippo){
+      axios.get(pippo).then(risposta => {
       console.log(risposta.data.results);
-      this.films = risposta.data.results
+      this.store.films = risposta.data.results
     }).catch(error => {
       console.error("te pareva");
     })
-  },
-  computed : {
-        filterContacts(){
-            return this.films.filter((contact)=>{
-               return contact.title.toLowerCase().startsWith(this.searchContact)
-            });
-        }
     }
+
+  }
 }
 
 </script>
 
 <template>
 
-  <input type="search" v-model="searchContact">
+  <input type="search" v-model="searchContact" @keyup.enter="ricerca">
 
-  <div v-for="film in filterContacts">
+  <div v-for="film in store.films">
     <p>{{ film.title }}</p>
     <p> {{ film.original_title }}</p>
     <p>{{ film.vote_average }}</p>
