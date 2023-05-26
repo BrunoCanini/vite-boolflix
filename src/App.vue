@@ -2,6 +2,8 @@
 
 import { store } from './data/store';
 import axios from 'axios';
+import { flags } from './data/flags';
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 export default {
   name: "App",
@@ -9,6 +11,7 @@ export default {
     return {
         store,
         searchContact: "",
+        flags,
     }
   },
   mounted() {
@@ -43,6 +46,14 @@ export default {
     })
     },
 
+    getFlag(lang) {
+      return 'fi fi-' + this.flags[lang]
+    },
+
+    provap(oggetto){
+      return Math.floor(oggetto / 2)
+    }
+
   }
 }
 
@@ -60,7 +71,11 @@ export default {
       <p>{{ film.title }}</p>
       <p>{{ film.original_title }}</p>
       <p>{{ film.vote_average }}</p>
-      <img :src="`https://flagcdn.com/16x12/${film.original_language}.png`" alt="">
+      <p>{{provap(film.vote_average)}}</p>
+      <template v-for=" i in provap(film.vote_average)" :key="i">
+        <i class="fa-solid fa-star"></i>
+      </template>
+      <span :class="getFlag(film.original_language)"></span>
     </div>
 
   </div>
@@ -73,7 +88,10 @@ export default {
     <p>{{ serie.name }}</p>
     <p>{{ serie.original_name }}</p>
     <p>{{ serie.vote_average }}</p>
-    <img :src="`https://flagcdn.com/16x12/${serie.original_language}.png`" alt="">
+    <span :class="getFlag(serie.original_language)"></span>
+    <template v-for=" i in provap(serie.vote_average)" :key="i">
+        <i class="fa-solid fa-star"></i>
+      </template>
   </div>
 
 </div>
