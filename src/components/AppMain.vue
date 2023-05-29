@@ -61,13 +61,16 @@ export default{
                 <div class="boxImg">
                     <img class="poster" :src=" store.urlImg + serie.poster_path " alt="">
                 </div>
-                <p>Titolo: <span>{{ serie.name }}</span></p>
-                <p>Titolo Originale: <span>{{ serie.original_name }}</span></p>
-                <span>Voto:</span>
-                <template v-for=" i in provap(serie.vote_average)" :key="i">
-                    <i class="fa-solid fa-star"></i>
-                </template>
-                <br><p :class="getFlag(serie.original_language)"></p>
+                <div class="show">
+                    <p>Titolo: <span>{{ serie.name }}</span></p>
+                    <p>Titolo Originale: <span>{{ serie.original_name }}</span></p>
+                    <span>Voto:</span>
+                    <template v-for=" i in provap(serie.vote_average)" :key="i">
+                        <i class="fa-solid fa-star"></i>
+                    </template>
+                    <br><p :class="getFlag(serie.original_language)"></p>
+                </div>
+
             </div>
 
         </div>
