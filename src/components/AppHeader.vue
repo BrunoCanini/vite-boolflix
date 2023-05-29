@@ -58,7 +58,7 @@ export default {
       <img src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-logo-red-black-png.png" alt="">
     </div>
     <div class="boxSearch">
-      <input type="search" v-model="searchContact" @keyup.enter="ricerca">
+      <input type="search" placeholder="Cerca spettacolo" v-model="searchContact" @keyup.enter="ricerca">
     </div>
   </header>
 

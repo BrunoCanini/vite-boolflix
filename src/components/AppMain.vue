@@ -21,6 +21,14 @@ export default{
 
         provap(oggetto){
         return Math.floor(oggetto / 2)
+        },
+
+        imgReturn(oggetto){
+            if(oggetto.poster_path == null){
+                return "../src/assets/placeholder.png"
+            } else{
+                return this.store.urlImg + oggetto.poster_path
+            }
         }
 
     },
@@ -38,7 +46,7 @@ export default{
             <div class="box" v-for="film in store.films">
 
                 <div class="boxImg">
-                    <img class="poster" :src=" store.urlImg + film.poster_path " alt="">
+                    <img class="poster" :src="imgReturn(film)" alt="">
                 </div>
                 <div class="show">
                     <p>Titolo: <span>{{ film.title }}</span></p>
@@ -59,7 +67,7 @@ export default{
 
             <div class="box" v-for="serie in store.series">
                 <div class="boxImg">
-                    <img class="poster" :src=" store.urlImg + serie.poster_path " alt="">
+                    <img class="poster" :src="imgReturn(serie)" alt="">
                 </div>
                 <div class="show">
                     <p>Titolo: <span>{{ serie.name }}</span></p>
