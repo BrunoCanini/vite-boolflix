@@ -58,7 +58,7 @@ export default {
       <img src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-logo-red-black-png.png" alt="">
     </div>
     <div class="boxSearch">
-      <input type="search" placeholder="Cerca spettacolo" v-model="searchContact" @keyup.enter="ricerca">
+      <input class="search" type="search" placeholder="Cerca spettacolo" v-model="searchContact" @keyup.enter="ricerca">
     </div>
   </header>
 
@@ -68,6 +68,7 @@ export default {
 <style lang="scss" scoped>
 
 header{
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -81,6 +82,15 @@ header{
   img{
     width: 100%;
   }
+}
+
+.boxSearch{
+  width: 300px;
+}
+
+.search{
+  width: 100%;
+  padding: 0.5rem;
 }
 
 
