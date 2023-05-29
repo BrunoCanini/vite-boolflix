@@ -115,6 +115,10 @@ export default{
 
     .show{
         display: none;
+
+        p{
+            padding: 0.5rem 0;
+        }
     }
 
     .box:hover {
