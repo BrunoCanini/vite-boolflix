@@ -86,8 +86,13 @@ export default{
                     <p>Titolo: <span>{{ serie.name }}</span></p>
                     <p>Titolo Originale: <span>{{ serie.original_name }}</span></p>
                     <span>Voto:</span>
-                    <template v-for=" i in provap(serie.vote_average)" :key="i">
-                        <i class="fa-solid fa-star yellow"></i>
+                    <template v-for=" i in 5">
+                        <template v-if=" provap(serie.vote_average) > i">
+                            <i class="fa-solid fa-star yellow"></i>
+                        </template>
+                        <template v-else>
+                            <i class="fa-solid fa-star"></i>
+                        </template>
                     </template>
                     <br><p :class="getFlag(serie.original_language)"></p>
                     <p>Descrizione: <span>{{ prova(serie.overview) }}</span></p>
