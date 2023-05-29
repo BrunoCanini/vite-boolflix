@@ -29,6 +29,13 @@ export default{
             } else{
                 return this.store.urlImg + oggetto.poster_path
             }
+        },
+
+        prova(argomento){
+            console.log(argomento)
+            if(argomento.length > 100){
+                return argomento.slice(0,100) + "..."
+            }
         }
 
     },
@@ -52,10 +59,16 @@ export default{
                     <p>Titolo: <span>{{ film.title }}</span></p>
                     <p>Titolo Originale: <span>{{ film.original_title }}</span></p>
                     <span>Voto:</span>
-                    <template v-for=" i in provap(film.vote_average)">
-                        <i class="fa-solid fa-star"></i>
+                    <template v-for=" i in 5">
+                        <template v-if=" provap(film.vote_average) > i">
+                            <i class="fa-solid fa-star yellow"></i>
+                        </template>
+                        <template v-else>
+                            <i class="fa-solid fa-star"></i>
+                        </template>
                     </template>
-                    <br><p :class="getFlag(film.original_language)"></p> 
+                    <br><p :class="getFlag(film.original_language)"></p>
+                    <p>Descrizione: <span>{{ prova(film.overview) }}</span></p>
                 </div>
 
             </div>
@@ -74,9 +87,10 @@ export default{
                     <p>Titolo Originale: <span>{{ serie.original_name }}</span></p>
                     <span>Voto:</span>
                     <template v-for=" i in provap(serie.vote_average)" :key="i">
-                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star yellow"></i>
                     </template>
                     <br><p :class="getFlag(serie.original_language)"></p>
+                    <p>Descrizione: <span>{{ prova(serie.overview) }}</span></p>
                 </div>
 
             </div>
@@ -90,7 +104,7 @@ export default{
 
     .box{
         width: 220px;
-        height: 342px;
+        height: 343px;
         border: 2px solid black;
         color: white;
         position: relative;
@@ -100,7 +114,7 @@ export default{
         display: flex;
         width: 100%;
         height: 343px;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         padding: 0 1.5rem;
         overflow-x: auto;
     }
@@ -140,6 +154,10 @@ export default{
         .show{
             display: block;
         }
+    }
+
+    .yellow{
+        color: yellow;
     }
 
 </style>
