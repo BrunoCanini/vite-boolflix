@@ -98,8 +98,9 @@ export default{
 
     .containerBox{
         display: flex;
+        width: 100%;
         height: 343px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         padding: 0 1.5rem;
         overflow-x: auto;
     }
