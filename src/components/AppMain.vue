@@ -40,13 +40,15 @@ export default{
                 <div class="boxImg">
                     <img class="poster" :src=" store.urlImg + film.poster_path " alt="">
                 </div>
-                <p>Titolo: <span>{{ film.title }}</span></p>
-                <p>Titolo Originale: <span>{{ film.original_title }}</span></p>
-                <span>Voto:</span>
-                <template v-for=" i in provap(film.vote_average)">
-                    <i class="fa-solid fa-star"></i>
-                </template>
-                <br><p :class="getFlag(film.original_language)"></p>
+                <div class="show">
+                    <p>Titolo: <span>{{ film.title }}</span></p>
+                    <p>Titolo Originale: <span>{{ film.original_title }}</span></p>
+                    <span>Voto:</span>
+                    <template v-for=" i in provap(film.vote_average)">
+                        <i class="fa-solid fa-star"></i>
+                    </template>
+                    <br><p :class="getFlag(film.original_language)"></p> 
+                </div>
 
             </div>
 
@@ -76,19 +78,26 @@ export default{
 <style lang="scss" scoped>
 
     .box{
-        width: 200px;
+        width: 220px;
+        height: 342px;
         border: 2px solid black;
         color: white;
+        position: relative;
     }
 
     .containerBox{
         display: flex;
+        height: 343px;
         flex-wrap: wrap;
         padding: 0 1.5rem;
+        overflow-x: auto;
     }
 
     .boxImg{
         width: 100%;
+        position: absolute;
+        top:0;
+        bottom: 0;
     }
 
     .poster{
@@ -99,6 +108,22 @@ export default{
     .titoloLista{
         color: white;
         padding: 1.5rem;
+    }
+
+    .show{
+        display: none;
+    }
+
+    .box:hover {
+
+        border: 2px solid white;
+
+        .boxImg{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
     }
 
 </style>
